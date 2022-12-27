@@ -11,9 +11,11 @@ Controlador do teste de Tilt Down  |
 import pyautogui
 from time import sleep
 
-sleep(2)
+sleep(3)
 
 # ===============================================| SetUp |============================================== #
+
+sample_name = pyautogui.prompt('Nome da amostra:')
 
 configuracoes_button = pyautogui.locateCenterOnScreen('images/configuracoes_button.png')
 pyautogui.moveTo(configuracoes_button) # "Configurações" button
@@ -35,6 +37,10 @@ pyautogui.click()
 
 run_button = pyautogui.locateCenterOnScreen('images/run_button.png')
 pyautogui.moveTo(run_button) # "Run" button
+pyautogui.click()
+
+full_screen = pyautogui.locateCenterOnScreen('images/full_screen.png')
+pyautogui.moveTo(full_screen)
 pyautogui.click()
 
 tilt_down_tab = pyautogui.locateCenterOnScreen('images/tilt_down_tab.png')
@@ -134,14 +140,74 @@ pyautogui.write(p_1min.strftime('%H:%M:%S'))
 
 pyautogui.press('enter')
 
-# ---------------------------------- Doing the test
+# ---------------------------------- Doing the 3 clycles test
 
 for _ in range(3):
-    r_button = pyautogui.locateCenterOnScreen('images/r_button.png')
-    pyautogui.click()
     d_button = pyautogui.locateCenterOnScreen('images/d_button.png')
+    pyautogui.moveTo(d_button)
+    pyautogui.click()
+    r_button = pyautogui.locateCenterOnScreen('images/r_button.png')
+    pyautogui.moveTo(r_button)
     pyautogui.click()
 
-sleep(0.9)
+sleep(50) # Time to wait complete signal appears on the graph
+pyautogui.screenshot('graphs/3_cycles/{}.png'.format(sample_name))
+
+# ==========================================| 10 Cycles Test |========================================== #
+
+ciclagem_tab = pyautogui.locateCenterOnScreen('images/ciclagem_tab.png')
+pyautogui.moveTo(ciclagem_tab)
+pyautogui.click()
+
+# ---------------------------------- Changing the number of cycles
+
+metagal_logo = pyautogui.locateCenterOnScreen('images/metagal_logo.png')
+pyautogui.moveTo(metagal_logo.x + 40, metagal_logo.y + 80)
+pyautogui.doubleClick()
+pyautogui.press('delete')
+pyautogui.write('10')
+pyautogui.press('enter')
+
+# ---------------------------------- Disabling AutoScaleX
+
+pyautogui.moveTo(metagal_logo.x + 300, metagal_logo.y + 300)
+pyautogui.rightClick()
+auto_scale_x = pyautogui.locateCenterOnScreen('images/auto_scale_x.png')
+pyautogui.moveTo(auto_scale_x)
+pyautogui.click()
+
+# ---------------------------------- Adjusting graphic time axis
+
+reference_0V = pyautogui.locateCenterOnScreen('images/0v.png')
+pyautogui.moveTo(reference_0V.x + 10, reference_0V.y + 5)
+pyautogui.doubleClick()
+pyautogui.press('delete')
+
+from datetime import datetime, timedelta
+
+now = datetime.now()
+p_5min = now + timedelta(minutes=5)
+
+pyautogui.write(now.strftime('%H:%M:%S'))
+
+pyautogui.moveTo(reference_0V.x + 200, reference_0V.y + 5)
+pyautogui.doubleClick()
+pyautogui.press('delete')
 
 
+pyautogui.write(p_5min.strftime('%H:%M:%S'))
+
+pyautogui.press('enter')
+
+# ---------------------------------- Starting the test
+
+comecar_button = pyautogui.locateCenterOnScreen('images/comecar_button.png')
+pyautogui.moveTo(comecar_button)
+pyautogui.click()
+
+sleep(5) # Time to wait complete signal appears on the graph (300s)
+pyautogui.screenshot('graphs/10_cycles/{}.png'.format(sample_name))
+
+# ============================================| End of Test |=========================================== #
+
+pyautogui.confirm('Teste da {} finalizado.'.format(sample_name))
