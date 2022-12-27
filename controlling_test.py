@@ -125,16 +125,11 @@ from datetime import datetime, timedelta
 
 now = datetime.now()
 p_1min = now + timedelta(minutes=1)
-
 pyautogui.write(now.strftime('%H:%M:%S'))
-
 pyautogui.moveTo(grafico_de_posicao_reference.x + 110, grafico_de_posicao_reference.y + 250)
 pyautogui.doubleClick()
 pyautogui.press('delete')
-
-
 pyautogui.write(p_1min.strftime('%H:%M:%S'))
-
 pyautogui.press('enter')
 
 # ---------------------------------- Doing the 3 clycles test
