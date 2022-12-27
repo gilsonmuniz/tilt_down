@@ -155,14 +155,16 @@ pyautogui.screenshot('graphs/3_cycles/{}.png'.format(sample_name))
 
 # ==========================================| 10 Cycles Test |========================================== #
 
+sleep(3)
+
 ciclagem_tab = pyautogui.locateCenterOnScreen('images/ciclagem_tab.png')
 pyautogui.moveTo(ciclagem_tab)
-pyautogui.click()
+pyautogui.doubleClick()
 
 # ---------------------------------- Changing the number of cycles
 
-metagal_logo = pyautogui.locateCenterOnScreen('images/metagal_logo.png')
-pyautogui.moveTo(metagal_logo.x + 40, metagal_logo.y + 80)
+cycles_3 = pyautogui.locateCenterOnScreen('images/3_cycles.png')
+pyautogui.moveTo(cycles_3)
 pyautogui.doubleClick()
 pyautogui.press('delete')
 pyautogui.write('10')
@@ -170,7 +172,8 @@ pyautogui.press('enter')
 
 # ---------------------------------- Disabling AutoScaleX
 
-pyautogui.moveTo(metagal_logo.x + 300, metagal_logo.y + 300)
+posicao_reference = pyautogui.locateCenterOnScreen('images/posicao_reference.png')
+pyautogui.moveTo(posicao_reference.x + 300, posicao_reference.y)
 pyautogui.rightClick()
 auto_scale_x = pyautogui.locateCenterOnScreen('images/auto_scale_x.png')
 pyautogui.moveTo(auto_scale_x)
@@ -178,8 +181,8 @@ pyautogui.click()
 
 # ---------------------------------- Adjusting graphic time axis
 
-reference_0V = pyautogui.locateCenterOnScreen('images/0v.png')
-pyautogui.moveTo(reference_0V.x + 10, reference_0V.y + 5)
+warning_reference = pyautogui.locateCenterOnScreen('images/warning_reference.png')
+pyautogui.moveTo(warning_reference.x - 620, warning_reference.y + 6, 0.2)
 pyautogui.doubleClick()
 pyautogui.press('delete')
 
@@ -189,14 +192,12 @@ now = datetime.now()
 p_5min = now + timedelta(minutes=5)
 
 pyautogui.write(now.strftime('%H:%M:%S'))
+pyautogui.press('enter')
 
-pyautogui.moveTo(reference_0V.x + 200, reference_0V.y + 5)
+pyautogui.moveTo(warning_reference.x - 45, warning_reference.y + 6, 0.2)
 pyautogui.doubleClick()
 pyautogui.press('delete')
-
-
 pyautogui.write(p_5min.strftime('%H:%M:%S'))
-
 pyautogui.press('enter')
 
 # ---------------------------------- Starting the test
@@ -205,7 +206,7 @@ comecar_button = pyautogui.locateCenterOnScreen('images/comecar_button.png')
 pyautogui.moveTo(comecar_button)
 pyautogui.click()
 
-sleep(5) # Time to wait complete signal appears on the graph (300s)
+sleep(280) # Time to wait complete signal appears on the graph (300s)
 pyautogui.screenshot('graphs/10_cycles/{}.png'.format(sample_name))
 
 # ============================================| End of Test |=========================================== #
