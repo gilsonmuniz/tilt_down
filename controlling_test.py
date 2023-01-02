@@ -1,14 +1,17 @@
 """
------------------------------------+
+===================================+
 Metagal - Laboratório de Qualidade |
 Controlador do teste de Tilt Down  |
------------------------------------+
+===================================+
 """
 
 import pyautogui
 from time import sleep
 
 sleep(3)
+
+TIME_3_CYCLES = 80
+TIME_10_CYCLES = 280
 
 # ===============================================| SetUp |============================================== #
 
@@ -154,7 +157,7 @@ pyautogui.click()
 
 # ---------------------------------- Saving the screenshot
 
-sleep(80) # Time to wait complete signal appears on the graph
+sleep(TIME_3_CYCLES) # Time to wait complete signal appears on the graph
 pyautogui.screenshot('graphs/3_cycles/{}.png'.format(sample_name))
 
 # ==========================================| 10 Cycles Test |========================================== #
@@ -210,7 +213,7 @@ pyautogui.click()
 
 # ---------------------------------- Saving the screenshot
 
-sleep(280)
+sleep(TIME_10_CYCLES)
 pyautogui.screenshot('graphs/10_cycles/{}.png'.format(sample_name))
 
 # ============================================| End of Test |=========================================== #
