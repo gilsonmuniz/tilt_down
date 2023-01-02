@@ -104,7 +104,7 @@ while drive_vertical_aligned == False:
             press_plus_horizontal_position()
             drive_vertical_aligned = False
 
-tilt_down_button = pyautogui.locateCenterOnScreen('images/drive_button.png')
+drive_button = pyautogui.locateCenterOnScreen('images/drive_button.png')
 pyautogui.click() # Saving Drive position (3.4, 3.4)
 
 # ==========================================| 3 Cycles Test |=========================================== #
