@@ -15,7 +15,7 @@ TIME_10_CYCLES = 280
 
 # ===============================================| SetUp |============================================== #
 
-sample_name = pyautogui.prompt('Número da amostra:')
+sample_name = pyautogui.prompt(title='TiltDown', text='Número da amostra:')
 
 configuracoes_button = pyautogui.locateCenterOnScreen('images/configuracoes_button.png')
 pyautogui.moveTo(configuracoes_button) # "Configurações" button
