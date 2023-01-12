@@ -12,7 +12,7 @@ from datetime import datetime, timedelta
 
 sleep(1)
 
-TIME_3_CYCLES = 62
+TIME_3_CYCLES = 55
 TIME_10_CYCLES = 220
 TIME_HOLD_CLICK = 0.11
 
@@ -56,7 +56,7 @@ start_time = datetime.now()
 configuracoes_button = pyautogui.locateCenterOnScreen('images/configuracoes_button.png')
 pyautogui.moveTo(configuracoes_button) # "Configurações" button
 pyautogui.click()
-
+sleep(0.4)
 daq_digital_inputs_reference = pyautogui.locateCenterOnScreen('images/daq_digital_inputs_reference.png')
 pyautogui.moveTo(daq_digital_inputs_reference.x + 150, daq_digital_inputs_reference.y + 30) # Changing DAQ's name
 pyautogui.click()
@@ -77,6 +77,8 @@ run_button = pyautogui.locateCenterOnScreen('images/run_button.png')
 pyautogui.moveTo(run_button)
 pyautogui.click()
 
+sleep(0.4)
+
 full_screen = pyautogui.locateCenterOnScreen('images/full_screen.png')
 pyautogui.moveTo(full_screen)
 pyautogui.click()
@@ -84,6 +86,7 @@ pyautogui.click()
 tilt_down_tab = pyautogui.locateCenterOnScreen('images/tilt_down_tab.png')
 pyautogui.moveTo(tilt_down_tab)
 pyautogui.click()
+sleep(0.4)
 
 # =================================| Tilt Down and Drive positions |=================================== #
 
@@ -118,6 +121,13 @@ tilt_down_button = pyautogui.locateCenterOnScreen('images/tilt_down_button.png')
 pyautogui.moveTo(tilt_down_button)
 pyautogui.click() # Saving Tilt Down position (1.9, 1.3)
 
+# ---------------------------------- Centralizing horizontal and vertical axis
+
+home_button = pyautogui.locateCenterOnScreen('images/home_button.png')
+pyautogui.moveTo(home_button)
+pyautogui.click()
+sleep(3)
+
 # ---------------------------------- Align horizontal Drive axis
 
 drive_horizontal_aligned = False
@@ -147,7 +157,7 @@ pyautogui.click() # Saving Drive position (3.4, 3.4)
 home_button = pyautogui.locateCenterOnScreen('images/home_button.png')
 pyautogui.moveTo(home_button)
 pyautogui.click()
-sleep(3)
+sleep(4.2)
 
 # ==========================================| 3 Cycles Test |=========================================== #
 
@@ -167,7 +177,7 @@ pyautogui.doubleClick()
 pyautogui.press('delete')
 
 now = datetime.now()
-p_1min = now + timedelta(minutes=1)
+p_1min = now + timedelta(minutes=1.1)
 pyautogui.write(now.strftime('%H:%M:%S'))
 pyautogui.moveTo(grafico_de_posicao_reference.x + 110, grafico_de_posicao_reference.y + 250)
 pyautogui.doubleClick()
@@ -179,7 +189,7 @@ pyautogui.press('enter')
 
 pyautogui.moveTo(home_button)
 pyautogui.click()
-sleep(2)
+sleep(3)
 
 # ---------------------------------- Doing the 3 clycles test
 
@@ -193,6 +203,7 @@ for _ in range(3):
 
 pyautogui.moveTo(home_button)
 pyautogui.click()
+sleep(3)
 
 # ---------------------------------- Saving the screenshot
 
@@ -230,8 +241,6 @@ warning_reference = pyautogui.locateCenterOnScreen('images/warning_reference.png
 pyautogui.moveTo(warning_reference.x - 620, warning_reference.y + 6)
 pyautogui.doubleClick()
 pyautogui.press('delete')
-
-from datetime import datetime, timedelta
 
 now = datetime.now()
 p_5min = now + timedelta(minutes=4)
