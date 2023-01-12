@@ -10,11 +10,11 @@ import time
 from time import sleep
 from datetime import datetime, timedelta
 
-sleep(1)
-
 TIME_3_CYCLES = 55
 TIME_10_CYCLES = 220
 TIME_HOLD_CLICK = 0.11
+
+sleep(1)
 
 # =============================================| Functions |============================================ #
 
