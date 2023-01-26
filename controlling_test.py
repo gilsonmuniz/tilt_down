@@ -9,6 +9,7 @@ import pyautogui
 import time
 from time import sleep
 from datetime import datetime, timedelta
+from glob import glob
 
 TIME_3_CYCLES = 55
 TIME_10_CYCLES = 220
@@ -51,6 +52,7 @@ def press_less_vertical_position():
 # ===============================================| SetUp |============================================== #
 
 sample_name = pyautogui.prompt(title='TiltDown', text='Número da amostra:')
+
 start_time = datetime.now()
 
 configuracoes_button = pyautogui.locateCenterOnScreen('images/configuracoes_button.png')
@@ -208,7 +210,7 @@ sleep(3)
 # ---------------------------------- Saving the screenshot
 
 sleep(TIME_3_CYCLES) # Time to wait complete signal appears on the graph
-pyautogui.screenshot('graphs/3_cycles/{}.png'.format(sample_name))
+pyautogui.screenshot('graphs/images_3_cycles/{}.png'.format(sample_name))
 
 # ==========================================| 10 Cycles Test |========================================== #
 
@@ -263,11 +265,11 @@ pyautogui.click()
 # ---------------------------------- Saving the screenshot
 
 sleep(TIME_10_CYCLES)
-pyautogui.screenshot('graphs/10_cycles/{}.png'.format(sample_name))
+pyautogui.screenshot('graphs/images_10_cycles/{}.png'.format(sample_name))
 
 # ============================================| End of Test |=========================================== #
 
 # end_time = datetime.now()
 # total_time = end_time - start_time
 # pyautogui.confirm('Teste da amostra {} finalizado.\nTempo total gasto: {}'.format(sample_name, total_time.strftime('%M:%S')))
-pyautogui.confirm('Teste da amostra {} finalizado.'.format(sample_name))
+pyautogui.confirm(title='TiltDown', text='Teste da amostra {} finalizado.'.format(sample_name))
